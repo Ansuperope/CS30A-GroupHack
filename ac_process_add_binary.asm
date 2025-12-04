@@ -1,5 +1,5 @@
 // ==============================================
-// ac_process_get_sign
+// ac_process_add_binary
 // ----------------------------------------------
 // OVERVIEW
 //  LOREM
@@ -14,4 +14,4 @@
 //  Temporary Variables:
 //      VAR - LOREM
 // ==============================================
-(ac_process_get_sign)
+(ac_process_add_binary)
