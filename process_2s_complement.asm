@@ -1,17 +1,20 @@
 // ==============================================
+// ac_process_2s_complement
+// flowchart: process_2s_complement
+// ----------------------------------------------
 // OVERVIEW
-// 
+//  This function will preform the 2s complement:
+//      1. it flips all the bits (done here)
+//      2. adds 1 (done in process_add_binary)
 // ----------------------------------------------
 // DATA TABLE
-//  Inputs (Receieve):
-//      RAM[0]... RAM[14] - binary values from input
+//  Inputs (Receieve from input):
+//      R0 ... R14      - binary values from input
 //
-//  Variables:
-//      RAM[0], x1 holds x / lcv for first mult
-//      RAM[1], y1 holds y / lcv for second mult
-//      RAM[2], z1 holds x*x result
+//  Output (Send to process_add_binary):
+//      NR0 ... NR14    - opposite binary values from input
 // 
-//  Output (Send):
-//      RAM[5], z product x^y is stored in 
+//  Variables:
+//      N/A
 // ==============================================
 (ac_process_2s_complement)
