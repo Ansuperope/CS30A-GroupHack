@@ -1,0 +1,4 @@
+# file that will be ignored / not saved to github
+# basically makes sure hack files arent saved
+*.hack
+!*.asm
