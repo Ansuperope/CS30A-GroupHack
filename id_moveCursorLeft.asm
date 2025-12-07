@@ -9,10 +9,9 @@
 // C++ PSEUDOCODE IMPLEMENTATION
 
 // void id_moveCursorLeft() {
-//     ** Move cursor left with boundary check **
 //     if (cursorColumn > 0) {
 //         cursorColumn--;
-//         ge_currentColumn = cursorColumn;  // Update for ge_output
+//         ge_currentColumn = cursorColumn;
 //     }
 // }
 
