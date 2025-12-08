@@ -86,6 +86,18 @@ D=M
 A=D+A       // IR[index]
 M=0
 
+// ===== IF index = 14 / ON LAST DIGIT / OVERFLOW =====
+@ac_index
+D=M
+
+@14
+D=D-A   // index - 14
+
+// index == 14
+@AC_ADD_BINARY_INC_INDEX
+D;JEQ
+// ===== END IF index = 14 / ON LAST DIGIT / OVERFLOW =====
+
 // ----- add 1 to next binary digit -----
 @ac_index
 D=M
