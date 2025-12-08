@@ -34,12 +34,8 @@
 
 // ========== END DELETE - TESTING INPUTS ==========
 
-// ========== ADD 1 TO FIRST DIGIT ==========
-
 // ========== CHECK FOR CARRIES ==========
 // ----- INITIALIZATIONS -----
-// pointer to function
-
 // ac_index = 0
 @ac_index
 M=0
@@ -51,6 +47,10 @@ D=A
 M=D
 // ----- END INITIALIZATIONS -----
 
+// ========== ADD 1 TO FIRST DIGIT ==========
+@IR0
+M=M+1
+
 // ===== CHECK IF CARRY =====
 (AC_CHECK_CARRY)
 
@@ -61,19 +61,42 @@ D=M
 @ac_last_num
 D=M-D
 
+// exit loop
 @NEXT
 D;JLE
 // ----- END CHECK IF ac_index < ac_last_num (15) ----- 
 
-// ---- add 1 to next binary digit -----
-@IR         // IR
-D=A
+// ----- CHECK IF IR[index] == 2 (CARRY) -----
 @ac_index
-A=M
+D=M
+@IR0
 A=D+A       // IR[index]
-M=M+1
+D=M         // D = IR[index]
+
+@1
+D=D-A
+@AC_ADD_BINARY_INC_INDEX
+D;JLE
+// ----- END CHECK IF IR[index] == 2 (CARRY) -----
+
+// ----- if IR[index] == 2 then IR[index] = 0 -----
+@ac_index
+D=M
+@IR0
+A=D+A       // IR[index]
+M=0
+
+// ----- add 1 to next binary digit -----
+@ac_index
+D=M
+@1
+D=D+A
+@IR0
+A=D+A       // A = address of IR[index+1]
+M=M+1       // IR[index]++
 
 // ---- incrememnt ac_index -----
+(AC_ADD_BINARY_INC_INDEX)
 @ac_index
 M=M+1
 
@@ -81,6 +104,7 @@ M=M+1
 @AC_CHECK_CARRY
 0;JMP
 // ===== END CHECK IF CARRY =====
+
 
 // ===== CHECK IF OVERFLOW (at last number / IR14) =====
 
