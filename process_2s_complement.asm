@@ -28,28 +28,6 @@
 //      NEXT        - next step of program, replace
 // ==============================================
 (ac_process_2s_complement)
-// @50
-// D=A
-// @IR
-// A=D
-
-// --- FOR TESTING DELETE LATER ---
-// @IR     // IR[0]
-// M=1
-
-// @IR1
-// M=1
-
-// @IR2
-// M=1
-
-// @IR13
-// M=1
-
-// @IR14   // last number
-// M=1
-// --- END FOR TESTING DELETE LATER ---
-
 // ----- INITIALIZATIONS -----
 // ac_index = 0
 @ac_index
@@ -77,24 +55,21 @@ D;JLE
 // ----- END CHECK IF ac_index < ac_last_num (15) ----- 
 
 // ---- get R[index] -----
-@R         // R
-D=A
 @ac_index
-A=M
-A=D+A       // R[index]
+D=M
+@R0
+A=D+A           // R[index]
 
 // ----- check bit value: if R[index] == 0 -----
-D=M
+D=M             // D = R[index]
 @AC_BIT_0
 D;JEQ
 
 // ----- flip bit: 1 -> 0 -----
-@IR         // IR
-D=A
 @ac_index
-A=M
-A=D+A       // IR[index]
-M=1
+D=M
+@IR0
+A=D+A      // IR[index]
 M=0
 
 // --- jump to increment index / next step ---
@@ -103,13 +78,11 @@ M=0
 
 // ----- flip bit: 0 -> 1 -----
 (AC_BIT_0)
-@IR         // IR
-D=A
 @ac_index
-A=M
-A=D+A       // IR[index]
+D=M
+@IR0
+A=D+A      // IR[index]
 M=1
-
 
 // ---- incrememnt ac_index -----
 (AC_2S_COMP_INC_INDEX)
