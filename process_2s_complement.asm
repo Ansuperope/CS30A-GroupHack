@@ -13,7 +13,7 @@
 //                  0 is the first number
 //                  14 is the last number
 //
-//  Output (Send to process_add_binary):
+//  Output (Send to next step):
 //      IR[0 - 14]  - opposite binary values from input
 //                  0 is the first number
 //                  14 is the last number
@@ -24,10 +24,33 @@
 //
 //      ac_last_num - lenght of array / how many 
 //                  times to loop
+//
+//      NEXT        - next step of program, replace
 // ==============================================
 (ac_process_2s_complement)
-// ----- INITIALIZATIONS -----
+// @50
+// D=A
+// @IR
+// A=D
 
+// --- FOR TESTING DELETE LATER ---
+// @IR     // IR[0]
+// M=1
+
+// @IR1
+// M=1
+
+// @IR2
+// M=1
+
+// @IR13
+// M=1
+
+// @IR14   // last number
+// M=1
+// --- END FOR TESTING DELETE LATER ---
+
+// ----- INITIALIZATIONS -----
 // ac_index = 0
 @ac_index
 M=0
@@ -39,6 +62,7 @@ D=A
 M=D
 // ----- END INITIALIZATIONS -----
 
+// ========== FLIP BITS FOR LOOP ==========
 (AC_2S_COMPLEMENT_LOOP)
 
 // ---- CHECK IF ac_index < ac_last_num (15) -----
@@ -52,13 +76,31 @@ D=M-D
 D;JLE
 // ----- END CHECK IF ac_index < ac_last_num (15) ----- 
 
-// ---- flip bit - change later -----
+// ---- get IR[index] -----
+@IR         // IR
+D=A
+@ac_index
+A=M
+A=D+A       // IR[index]
+
+// ----- check bit value: if IR[index] == 0 -----
+D=M
+@AC_BIT_0
+D;JEQ
+
+// ----- flip bit: 1 -> 0 -----
+M=0
+
+// ----- flip bit: 0 -> 1 -----
+(AC_BIT_0)
+// ---- get IR[index] -----
 @IR         // IR
 D=A
 @ac_index
 A=M
 A=D+A       // IR[index]
 M=1
+
 
 // ---- incrememnt ac_index -----
 @ac_index
@@ -67,7 +109,7 @@ M=M+1
 // ----- loop again -----
 @AC_2S_COMPLEMENT_LOOP
 0;JMP
-// ===== END CHECK IF CARRY =====
+// ========== END FLIP BITS FOR LOOP ==========
 
 // ========== NEXT - REPLACE ==========
 (NEXT)
