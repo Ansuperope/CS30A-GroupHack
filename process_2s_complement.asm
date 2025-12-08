@@ -76,24 +76,33 @@ D=M-D
 D;JLE
 // ----- END CHECK IF ac_index < ac_last_num (15) ----- 
 
-// ---- get IR[index] -----
-@IR         // IR
+// ---- get R[index] -----
+@R         // R
 D=A
 @ac_index
 A=M
-A=D+A       // IR[index]
+A=D+A       // R[index]
 
-// ----- check bit value: if IR[index] == 0 -----
+// ----- check bit value: if R[index] == 0 -----
 D=M
 @AC_BIT_0
 D;JEQ
 
 // ----- flip bit: 1 -> 0 -----
+@IR         // IR
+D=A
+@ac_index
+A=M
+A=D+A       // IR[index]
+M=1
 M=0
+
+// --- jump to increment index / next step ---
+@AC_2S_COMP_INC_INDEX
+0;JMP
 
 // ----- flip bit: 0 -> 1 -----
 (AC_BIT_0)
-// ---- get IR[index] -----
 @IR         // IR
 D=A
 @ac_index
@@ -103,6 +112,7 @@ M=1
 
 
 // ---- incrememnt ac_index -----
+(AC_2S_COMP_INC_INDEX)
 @ac_index
 M=M+1
 
