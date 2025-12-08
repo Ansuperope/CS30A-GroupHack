@@ -13,14 +13,14 @@
 //  Inputs (from process_2s_complement):
 //      IR[0 - 14]   - inverse of user input binary 
 //                   number
-//                     0 is first number
-//                     14 is last number
+//                   0 is first number
+//                   14 is last number
 //
 //  Output (to next step):
 //      IR[0 - 14]   - inverse of user input binary 
 //                   number but with + 1
-//                     0 is first number
-//                     14 is last number
+//                   0 is first number
+//                   14 is last number
 //  Variables:
 //      ac_index       - access digits in binary word
 //
@@ -30,9 +30,6 @@
 //      NEXT        - jumps to next part (continues program)
 // ==============================================
 (ac_process_add_binary)
-// ========== DELETE - TESTING INPUTS ==========
-
-// ========== END DELETE - TESTING INPUTS ==========
 
 // ========== CHECK FOR CARRIES ==========
 // ----- INITIALIZATIONS -----
@@ -54,7 +51,7 @@ M=M+1
 // ===== CHECK IF CARRY =====
 (AC_CHECK_CARRY)
 
-// ---- CHECK IF ac_index < ac_last_num (15) -----
+// ----- CHECK IF ac_index < ac_last_num (15) -----
 @ac_index
 D=M
 
@@ -107,7 +104,7 @@ D=D+A
 A=D+A       // A = address of IR[index+1]
 M=M+1       // IR[index]++
 
-// ---- incrememnt ac_index -----
+// ----- incrememnt ac_index -----
 (AC_ADD_BINARY_INC_INDEX)
 @ac_index
 M=M+1
@@ -117,14 +114,9 @@ M=M+1
 0;JMP
 // ===== END CHECK IF CARRY =====
 
-
-// ===== CHECK IF OVERFLOW (at last number / IR14) =====
-
-// ===== END CHECK IF OVERFLOW (at last number / IR14) =====
-
 // ========== END CHECK FOR CARRIES ==========
 
-// ========== NEXT - REPLACE ==========
+// ========== DONE - ac_process_add_binary ==========
 (NEXT)
 
 // ----- replace when using -----

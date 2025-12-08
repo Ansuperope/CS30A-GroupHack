@@ -12,7 +12,7 @@
 // ----------------------------------------------
 // DATA TABLE
 //  Inputs:
-//      RAM[15]     - value checking, holds sign of binary word
+//      R[15]     - value checking, holds sign of binary word
 //
 //  Output:
 //      FUNC_POS    - where to jump if sign is positive (0)
@@ -47,7 +47,7 @@ D;JEQ       // if R15 == 0 (positive) jump
 // ----- insert code here -----
 // ========== END SIGN 0 / POS - JUMP TO ==========
 
-// ========== NEXT - REPLACE ==========
+// ========== DONE - ac_process_get_sign ==========
 (NEXT)
 
 // ----- replace when using -----

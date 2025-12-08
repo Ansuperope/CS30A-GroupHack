@@ -94,7 +94,7 @@ M=M+1
 0;JMP
 // ========== END FLIP BITS FOR LOOP ==========
 
-// ========== NEXT - REPLACE ==========
+// ========== DONE - ac_process_2s_complement ==========
 (NEXT)
 
 // ----- replace when using -----
