@@ -26,20 +26,14 @@
 // ==============================================
 (ac_process_add_binary)
 // ========== DELETE - TESTING INPUTS ==========
-// first digit
-@IR0
-M=0
-
-@IR1
-M=0
-
-// last digit
 
 // ========== END DELETE - TESTING INPUTS ==========
 
 // ========== ADD 1 TO LAST DIGIT ==========
-@IR0
-M=M+1
+@100
+D=A
+@IR     // IR begins at location 20
+M=D
 
 // ========== CHECK FOR CARRIES ==========
 // ----- INITIALIZATIONS -----
@@ -59,6 +53,14 @@ M=D
 // ===== CHECK IF CARRY =====
 (AC_CHECK_CARRY)
 
+// ---- add 1 to IR[index] -----
+@IR
+D=M
+@ac_index
+A=D+A   // at address IR[index]
+M=A    // IR[index] = index
+
+
 // ---- CHECK IF ac_index < ac_last_num (15) -----
 @ac_index
 D=M
@@ -70,11 +72,8 @@ D=M-D
 D;JLE
 // ----- END CHECK IF ac_index < ac_last_num (15) ----- 
 
-@IR0
-M=M+1
+// ---- add 1 to next binary digit -----
 
-@IR1
-M=M+1
 
 // ---- incrememnt ac_index -----
 @ac_index
