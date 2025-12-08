@@ -11,17 +11,22 @@
 // ----------------------------------------------
 // DATA TABLE
 //  Inputs (from process_2s_complement):
-//      IR0, ... IR14   - inverse of user input
-//                      binary number
+//      IR[0 - 14]   - inverse of user input binary 
+//                   number
+//                     0 is first number
+//                     14 is last number
 //
 //  Output (to next step):
-//      IR0, ... IR14   - inverse of user input
-//                      binary number BUT with 1 added
-//
+//      IR[0 - 14]   - inverse of user input binary 
+//                   number but with + 1
+//                     0 is first number
+//                     14 is last number
 //  Variables:
 //      ac_index       - access digits in binary word
+//
 //      ac_last_num    - length of binary word. Used
 //                  check if we are at the last digit
+//
 //      NEXT        - jumps to next part (continues program)
 // ==============================================
 (ac_process_add_binary)
@@ -29,11 +34,7 @@
 
 // ========== END DELETE - TESTING INPUTS ==========
 
-// ========== ADD 1 TO LAST DIGIT ==========
-@100
-D=A
-@IR     // IR begins at location 20
-M=D
+// ========== ADD 1 TO FIRST DIGIT ==========
 
 // ========== CHECK FOR CARRIES ==========
 // ----- INITIALIZATIONS -----
@@ -53,14 +54,6 @@ M=D
 // ===== CHECK IF CARRY =====
 (AC_CHECK_CARRY)
 
-// ---- add 1 to IR[index] -----
-@IR
-D=M
-@ac_index
-A=D+A   // at address IR[index]
-M=A    // IR[index] = index
-
-
 // ---- CHECK IF ac_index < ac_last_num (15) -----
 @ac_index
 D=M
@@ -73,7 +66,12 @@ D;JLE
 // ----- END CHECK IF ac_index < ac_last_num (15) ----- 
 
 // ---- add 1 to next binary digit -----
-
+@IR         // IR
+D=A
+@ac_index
+A=M
+A=D+A       // IR[index]
+M=M+1
 
 // ---- incrememnt ac_index -----
 @ac_index
