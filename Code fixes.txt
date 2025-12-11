@@ -1,0 +1,54 @@
+------------------------- My code (logan) - What I changed and why -----------------------
+
+- I replaced my long BIT0..BIT15 ladder with one BIT_HANDLER because it was cleaner and easier        
+  to maintain.
+
+- I changed my backspace from the BACK0..BACK15 ladder into one HANDLE_BACKSPACE function.  
+  just makes the code far simpler in comparison.
+
+- I updated Clear so it wipes the screen, resets all registers, and resets all input state,   
+  not just my local variables. This does slightly update the flowchart, so Clear now restarts  
+  everything, not just the bit index. I had a slight issue with the screen not clearing, and I 
+  ran into a few bugs where it quit the program instead of just clearing it, but instead it 
+  would cancel out a bit after input, and hitting enter again. Very weird bug, so I just 
+  reworked it. 
+
+- I added uppercase support for C and Q because the emulator sends capital letters and had to 
+  Make sure both inputs work for safety.
+
+- I tied my input loop into Aspen and Kamin’s sections so Enter moves straight into PROCESS.
+
+
+---------------------------- Kamins - What changed and why ---------------------------------
+
+- Your arrow function " km_output_arrow " was replaced because we needed "-->" for better  
+  visual, not "->", and it had to be drawn inside Aspen’s final output routine.
+
+- The sign helper that used R15 for +/– was removed because the project uses real 16-bit  
+  signed values, and the sign bit is R0. This slightly changes the flowchart: the sign now   
+  comes from MSB, not R15.
+
+
+---------------------------- Apsen - What changed and why ----------------------------------
+
+- I removed your manual 2’s-complement code (flip bits into IR, add 1, handle carries)  
+  because Hack automatically handles negative numbers when you do -valRaw. So for your   
+  flowchart, the whole IR step is gone.
+
+- I switched your sign detection from R15 to R0 because R0 is the actual sign bit. update 
+  the Flowchart to reflect correct sign source.
+
+- I moved your arrow and sign placement into one final DRAW_RESULT block so output 
+  formatting is guaranteed.
+
+---------------------------- Ivan - What changed and why ----------------------------------
+
+- I just reorganized calls so my (Logan’s) input and Aspen’s result printing both use it  
+  correctly.
+
+- I used yours/professors " ge_output_g " character to draw the arrow tip >.
+
+- I added a blank-space draw using " ge_output_s " when backspace deletes a bit. Update   
+  Flowchart slightly because backspace now affects the screen too.
+
+ 
