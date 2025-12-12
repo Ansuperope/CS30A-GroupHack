@@ -446,7 +446,7 @@
     @ca_addr
     M=D
 
-    @32   // 32 words = one row
+    @384   // clear all
     D=A
     @ca_count
     M=D
